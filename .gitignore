@@ -1,6 +1,6 @@
 build/
 libs/
-README.md
+# README.md
 # TODO.md
 cmake.check_cache
 CmakeSystem.cmake
