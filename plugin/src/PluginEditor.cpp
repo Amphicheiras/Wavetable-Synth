@@ -6,39 +6,58 @@
   ==============================================================================
 */
 
-#include "WavetableSynth/PluginProcessor.h"
 #include "WavetableSynth/PluginEditor.h"
 
 //==============================================================================
-WavetableSynthAudioProcessorEditor::WavetableSynthAudioProcessorEditor(WavetableSynthAudioProcessor &p)
+PluginEditor::PluginEditor(PluginProcessor &p)
     : AudioProcessorEditor(&p), audioProcessor(p)
 {
   addAndMakeVisible(playStopButtonLabel);
   playStopButtonLabel.setText("Play/Stop", juce::dontSendNotification);
-  // Make sure that before the constructor has finished, you've set the
-  // editor's size to whatever you need it to be.
+
+  noteLabel.setText("Note: ", juce::dontSendNotification);
+  noteLabel.setColour(juce::Label::textColourId, juce::Colours::white);
+  addAndMakeVisible(noteLabel);
+
   setSize(400, 300);
+
+  startTimer(100);
 }
 
-WavetableSynthAudioProcessorEditor::~WavetableSynthAudioProcessorEditor()
+PluginEditor::~PluginEditor()
 {
 }
 
 //==============================================================================
-void WavetableSynthAudioProcessorEditor::paint(juce::Graphics &g)
+void PluginEditor::paint(juce::Graphics &g)
 {
-  // (Our component is opaque, so we must completely fill the background with a solid colour)
-  g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
+  g.fillAll(juce::Colours::blueviolet);
 
-  g.setColour(juce::Colours::white);
-  g.setFont(juce::FontOptions(15.0f));
-  g.drawFittedText("Sin Thesizer", getLocalBounds(), juce::Justification::centred, 1);
-  // addAndMakeVisible(playStopButton);
-  // addAndMakeVisible(playStopButtonLabel);
+  addAndMakeVisible(playStopButton);
+  addAndMakeVisible(playStopButtonLabel);
 }
 
-void WavetableSynthAudioProcessorEditor::resized()
+void PluginEditor::resized()
 {
   playStopButton.setBounds({10, 10, 10, 10});
   playStopButtonLabel.setBounds({10, 10, 10, 10});
+  noteLabel.setBounds(getWidth() / 4, getHeight() / 2 - 10, getWidth() / 2, 20);
+}
+
+void PluginEditor::updateNoteDisplay(int noteNumber)
+{
+  // Display the note if it's valid, otherwise show "No note"
+  if (noteNumber >= 0)
+    noteLabel.setText("Note: " + juce::String(noteNumber), juce::dontSendNotification);
+  else
+    noteLabel.setText("Note: No note", juce::dontSendNotification);
+}
+
+void PluginEditor::timerCallback()
+{
+  int currentNote = audioProcessor.getLastNote(); // Get the last note from processor
+  if (currentNote >= 0)
+    noteLabel.setText("Note: " + juce::String(currentNote), juce::dontSendNotification);
+  else
+    noteLabel.setText("Note: No note", juce::dontSendNotification);
 }

@@ -14,11 +14,11 @@
 //==============================================================================
 /**
  */
-class WavetableSynthAudioProcessorEditor : public juce::AudioProcessorEditor
+class PluginEditor : public juce::AudioProcessorEditor, public juce::Timer
 {
 public:
-  WavetableSynthAudioProcessorEditor(WavetableSynthAudioProcessor &);
-  ~WavetableSynthAudioProcessorEditor() override;
+  PluginEditor(PluginProcessor &);
+  ~PluginEditor() override;
 
   //==============================================================================
   void paint(juce::Graphics &) override;
@@ -27,13 +27,18 @@ public:
 private:
   // This reference is provided as a quick way for your editor to
   // access the processor object that created it.
-  WavetableSynthAudioProcessor &audioProcessor;
+  PluginProcessor &audioProcessor;
 
   // Button, Attachment & Label for play stop
   juce::ToggleButton playStopButton;
   std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment>
       playStopAttachment;
   juce::Label playStopButtonLabel;
+  juce::Label noteLabel;
 
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(WavetableSynthAudioProcessorEditor)
+  void updateNoteDisplay(int noteNumber);
+
+  void timerCallback() override;
+
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PluginEditor)
 };
