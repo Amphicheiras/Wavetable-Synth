@@ -34,7 +34,7 @@
 
 1. Load the Plugin:
    After compiling, load the plugin in a supported DAW or run as a standalone application if built as such.
-2. Place the Synth in a MIDI channel and send it a MIDI note!
+2. Place the Synth in a MIDI channel and play a MIDI note!
 
 ### Code Overview
 
