@@ -33,7 +33,8 @@ std::vector<float> WavetableSynth::generateSawWaveTable()
 void WavetableSynth::initializeOscillators()
 {
 	constexpr auto OSCILLATORS_COUNT = 128;
-	const auto waveTable = generateSawWaveTable();
+	// const auto waveTable = generateSawWaveTable();
+	const auto waveTable = generateSineWaveTable();
 
 	oscillators.clear();
 	for (auto i = 0; i < OSCILLATORS_COUNT; ++i)

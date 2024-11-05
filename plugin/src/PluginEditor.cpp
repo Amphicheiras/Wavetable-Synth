@@ -19,7 +19,7 @@ PluginEditor::PluginEditor(PluginProcessor &p)
 	noteLabel.setColour(juce::Label::textColourId, juce::Colours::white);
 	addAndMakeVisible(noteLabel);
 
-	setSize(400, 300);
+	setSize(200, 100);
 	startTimer(100);
 }
 

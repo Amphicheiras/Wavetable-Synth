@@ -1,0 +1,5 @@
+- show waveform!
+- play/stop BTN
+- change waveform
+- volume knob
+- bandpass filters w/on/off btns
