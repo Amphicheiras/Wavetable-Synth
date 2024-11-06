@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(3DAudioPlugin VERSION 0.1.0)
+project(WavetableSynth VERSION 0.1.0)
 
 set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include/WavetableSynth")
 
@@ -12,7 +12,7 @@ juce_add_plugin(${PROJECT_NAME}
     PLUGIN_MANUFACTURER_CODE UF00
     PLUGIN_CODE WTSY
     FORMATS Standalone VST3
-    PRODUCT_NAME "Sin Thesizer"
+    PRODUCT_NAME "SinThesizer"
 )
 
 target_sources(${PROJECT_NAME}

@@ -1,5 +1,6 @@
 # Wavetable Synthesizer Audio Plugin
 
+  <img src="https://github.com/Amphicheiras/Wavetable-Synth/blob/main/github/sineThesizer.png?raw=true" alt="right" width="250">
 
 ## Features
 
