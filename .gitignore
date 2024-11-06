@@ -1,5 +1,6 @@
 build/
 libs/
+github/
 cmake.check_cache
 CmakeSystem.cmake
 CMakeFiles/CMakeConfigureLog.yaml
